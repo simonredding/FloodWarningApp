@@ -8,9 +8,10 @@
     mc:Ignorable="d">
 
     <StackPanel Background="LightBlue" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="View Flood Warnings" Click="Button_Click" VerticalAlignment="Center" Width="295" HorizontalAlignment="Center" />
-        <TextBlock x:Name="ResultFloodWarningsMessage" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
-        <TextBlock x:Name="ResultFloodWarningsTimeUpdated" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
-        <TextBlock x:Name="ResultFloodWarningsTACode" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
+        <Button Content="View Flood Warnings" Click="Button_Click" VerticalAlignment="Top" Width="295" HorizontalAlignment="Center" />
+        <TextBlock x:Name="ResultMessage" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
+        <TextBlock x:Name="ResultTimeUpdated" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
+        <TextBlock x:Name="ResultTACode" Height="50" TextWrapping="Wrap" FontSize="11" />
+        <TextBlock x:Name="NumberofAlerts" />
     </StackPanel>
 </Page>

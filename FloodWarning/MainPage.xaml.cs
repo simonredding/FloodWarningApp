@@ -29,34 +29,32 @@ namespace FloodWarning
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-          /* This code is for the use of Geolocation in the app.  Not currently in use
-            
-            var position = await LocationManager.GetPosition();
-            
-            var lat = position.Coordinate.Latitude;
-            var lon = position.Coordinate.Longitude;
+            /// This code is for the use of Geolocation in the app. The r relates to the radius from the current location.
 
-            RootObject myFlooding = 
-                await OpenFloodWarningProxy.GetFloodWarnings(
-                        lat,
-                        lon);
+              var position = await LocationManager.GetPosition();
 
-            */            
-            
-            //This is the call to the API - anything in the brackets must be the same type as specified in the GetFloodWarnings code. For example a county of River.
+              var lat = position.Coordinate.Latitude;
+              var lon = position.Coordinate.Longitude;
+              var r = 1000.0;
 
-            RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings("London");
-                     
-            //This is what is returned. The bracketted item is the specific TA in the returned list. 
+              RootObject myFlooding = 
+                  await OpenFloodWarningProxy.GetFloodWarnings(
+                          lat,
+                          lon,
+                          r);             
 
-            ResultFloodWarningsMessage.Text = myFlooding.items[5].message;
+            /*This is the old call to the API - anything in the brackets must be the same type as specified in the GetFloodWarnings code. For example a county of River.
 
-            ResultFloodWarningsTimeUpdated.Text = myFlooding.items[5].timeMessageChanged;
+            RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(51.1,0.12,1000.0); */
 
-            ResultFloodWarningsTACode.Text = myFlooding.items[5].floodAreaID;
+          ///  This is what is returned. The bracketted item is the specific TA in the returned list.
 
-            //This is test text
-            
+            ResultMessage.Text = myFlooding.items[0].message;
+
+            ResultTimeUpdated.Text = myFlooding.items[0].timeMessageChanged;
+
+            ResultTACode.Text = myFlooding.items[0].floodAreaID;
+
         }
 
     }

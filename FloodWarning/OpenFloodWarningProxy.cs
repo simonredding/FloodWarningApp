@@ -17,13 +17,13 @@ namespace FloodWarning
     {
         //Note this the string must be same as the URL query and the info in the Mainpage.xaml.cs code too.
 
-        public async static Task<RootObject> GetFloodWarnings(string county)
+        public async static Task<RootObject> GetFloodWarnings( double lat, double lon, double r)
         {
             var http = new HttpClient();
 
             //Note that the url has a search value. This can be altered, but you must also alter the Mainpage.xaml.cs code too.
 
-            var response = await http.GetAsync("http://environment.data.gov.uk/flood-monitoring/id/floods?county=London");
+            var response = await http.GetAsync("http://environment.data.gov.uk/flood-monitoring/id/floods?");
 
             var result = await response.Content.ReadAsStringAsync();
 
@@ -35,6 +35,8 @@ namespace FloodWarning
 
             return data;
         }
+
+
     }
 
     //List of the API returns in c sharp. Remember to blank out any calls that return errors.
