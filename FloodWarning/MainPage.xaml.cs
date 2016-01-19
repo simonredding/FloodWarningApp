@@ -38,10 +38,7 @@ namespace FloodWarning
               var r = 1000.0;
 
               RootObject myFlooding = 
-                  await OpenFloodWarningProxy.GetFloodWarnings(
-                          lat,
-                          lon,
-                          r);             
+                  await OpenFloodWarningProxy.GetFloodWarnings(lat,lon,r);             
 
             /*This is the old call to the API - anything in the brackets must be the same type as specified in the GetFloodWarnings code. For example a county of River.
 
