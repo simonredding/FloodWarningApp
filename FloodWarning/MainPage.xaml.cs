@@ -29,29 +29,57 @@ namespace FloodWarning
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            /// This code is for the use of Geolocation in the app. The r relates to the radius from the current location.
+            try
+            {
 
-              var position = await LocationManager.GetPosition();
+                /// This code is for the use of Geolocation in the app. The dist relates to the distance (radius) from the current location.
 
-              var lat = position.Coordinate.Latitude;
-              var lon = position.Coordinate.Longitude;
-              var r = 1000.0;
+                var position = await LocationManager.GetPosition();
 
-              RootObject myFlooding = 
-                  await OpenFloodWarningProxy.GetFloodWarnings(lat,lon,r);             
+                var lat = position.Coordinate.Latitude;
+                var lon = position.Coordinate.Longitude;
+                var dist = 10;
 
-            /*This is the old call to the API - anything in the brackets must be the same type as specified in the GetFloodWarnings code. For example a county of River.
+                RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(
+                    lat, 
+                    lon, 
+                    dist);
 
-            RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(51.1,0.12,1000.0); */
+                /*// Schedule update
+                var uri = String.Format("http://uwpweatherservice.azurewebsites.net/?lat={0}&lon={1}", lat, lon);
 
-          ///  This is what is returned. The bracketted item is the specific TA in the returned list.
+                var tileContent = new Uri(uri);
+                var requestedInterval = PeriodicUpdateRecurrence.HalfHour;
 
-            ResultMessage.Text = myFlooding.items[0].message;
+                var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+                updater.StartPeriodicUpdate(tileContent, requestedInterval);
 
-            ResultTimeUpdated.Text = myFlooding.items[0].timeMessageChanged;
+                string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
+                ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
 
-            ResultTACode.Text = myFlooding.items[0].floodAreaID;
+                */
 
+                /*This is the old call to the API - anything in the brackets must be the same type as specified in the GetFloodWarnings code. For example a county of River.
+
+                RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(51.1,0.12,1000.0); */
+
+                ///  This is what is returned. The bracketted item is the specific numbered TA in the returned list.
+
+                ResultTAName.Text = myFlooding.items[0].severity + " has been issued for " + myFlooding.items[0].description;
+
+               /* ResultSeverity.Text = myFlooding.items[0].severity; */
+
+                ResultMessage.Text = myFlooding.items[0].message;
+
+                ResultTimeUpdated.Text = "Message last updated at " + myFlooding.items[0].timeMessageChanged;
+
+                ResultTACode.Text = myFlooding.items[0].floodAreaID;
+            }
+            catch
+            {
+                ResultMessage.Text = "No information available at this location at this time.";
+
+            }
         }
 
     }
