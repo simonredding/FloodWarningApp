@@ -17,13 +17,13 @@ namespace FloodWarning
     {
         //Note this the string must be same as the URL query and the info in the Mainpage.xaml.cs code too.
 
-        public async static Task<RootObject> GetFloodWarnings(double lat, double lon, int dist)
+        public async static Task<RootObject> GetFloodWarnings(double lat, double lon, int dist, int minseverity)
         {
             var http = new HttpClient();
 
             //Note that the url has a search value. This can be altered, but you must also alter the Mainpage.xaml.cs code too.
 
-            var url = String.Format("http://environment.data.gov.uk/flood-monitoring/id/floods?lat={0}&long={1}&dist={2}", lat, lon, dist);
+            var url = String.Format("http://environment.data.gov.uk/flood-monitoring/id/floods?lat={0}&long={1}&dist={2}&min-severity={3}", lat, lon, dist, minseverity);
 
             var response = await http.GetAsync(url);
 

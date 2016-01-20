@@ -33,17 +33,21 @@ namespace FloodWarning
             {
 
                 /// This code is for the use of Geolocation in the app. The dist relates to the distance (radius) from the current location.
+                /// minseverity is related to what level of flood warning to show. 3 = Alert, 2 = Warning, 1= SFW
 
                 var position = await LocationManager.GetPosition();
 
                 var lat = position.Coordinate.Latitude;
                 var lon = position.Coordinate.Longitude;
-                var dist = 10;
+
+                var dist = 140;
+                var minseverity = 3;
 
                 RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(
                     lat, 
                     lon, 
-                    dist);
+                    dist,
+                    minseverity);
 
                 /*// Schedule update
                 var uri = String.Format("http://uwpweatherservice.azurewebsites.net/?lat={0}&lon={1}", lat, lon);
@@ -67,17 +71,15 @@ namespace FloodWarning
 
                 ResultTAName.Text = myFlooding.items[0].severity + " has been issued for " + myFlooding.items[0].description;
 
-               /* ResultSeverity.Text = myFlooding.items[0].severity; */
-
                 ResultMessage.Text = myFlooding.items[0].message;
 
-                ResultTimeUpdated.Text = "Message last updated at " + myFlooding.items[0].timeMessageChanged;
+                ResultTimeUpdated.Text = "Information last updated at " + myFlooding.items[0].timeMessageChanged;
 
                 ResultTACode.Text = myFlooding.items[0].floodAreaID;
             }
             catch
             {
-                ResultMessage.Text = "No information available at this location at this time.";
+                ResultMessage.Text = "No flooding information available at this location at this time.";
 
             }
         }

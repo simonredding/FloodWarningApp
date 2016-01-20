@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <StackPanel Background="LightBlue" VerticalAlignment="Center" HorizontalAlignment="Center">
-        <Button Content="View Flood Warnings" Click="Button_Click" VerticalAlignment="Top" Width="295" HorizontalAlignment="Center" />
+        <Button Content="View Flood Warnings Near Me" Click="Button_Click" VerticalAlignment="Top" Width="295" HorizontalAlignment="Center" />
         <TextBlock x:Name="ResultTAName" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="15" />
         <TextBlock x:Name="ResultMessage" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
         <TextBlock x:Name="ResultTimeUpdated" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="11" />
