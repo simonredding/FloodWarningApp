@@ -40,7 +40,7 @@ namespace FloodWarning
                 var lat = position.Coordinate.Latitude;
                 var lon = position.Coordinate.Longitude;
 
-                var dist = 140;
+                var dist = 10;
                 var minseverity = 3;
 
                 RootObject myFlooding = await OpenFloodWarningProxy.GetFloodWarnings(
